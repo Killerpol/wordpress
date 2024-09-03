@@ -1,0 +1,6 @@
+.elementor-734 .elementor-element.elementor-element-48a26576 > .elementor-container{max-width:1410px;}.elementor-734 .elementor-element.elementor-element-48a26576{margin-top:0px;margin-bottom:75px;}.elementor-734 .elementor-element.elementor-element-1e27daa9 > .elementor-widget-wrap > .elementor-widget:not(.elementor-widget__width-auto):not(.elementor-widget__width-initial):not(:last-child):not(.elementor-absolute){margin-bottom:45px;}.elementor-734 .elementor-element.elementor-element-58abdb51{text-align:center;}.elementor-734 .elementor-element.elementor-element-58abdb51 .elementor-heading-title{color:#222222;font-family:"Roboto", Sans-serif;font-size:24px;font-weight:600;}.elementor-734 .elementor-element.elementor-element-497752a2 .swiper-wrapper{align-items:flex-start;}@media(max-width:767px){.elementor-734 .elementor-element.elementor-element-48a26576{margin-top:0px;margin-bottom:40px;}}/* Start custom CSS for section, class: .elementor-element-48a26576 */.custom-brands .swiper-entry:not(.wpb_images_carousel) .swiper-lazy.swiper-lazy-loaded {
+    opacity: 0.4 !important;
+}
+.custom-brands .swiper-entry:not(.wpb_images_carousel) .swiper-lazy.swiper-lazy-loaded:hover {
+    opacity: 1 !important;
+}/* End custom CSS */

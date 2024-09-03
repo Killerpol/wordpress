@@ -1,0 +1,388 @@
+.dokan-quote-wrapper {
+  position: relative;
+}
+.dokan-quote-wrapper .help-block {
+  position: absolute;
+  top: 10px;
+}
+.dokan-quote-wrapper .help-block span.help-text {
+  display: inline-block;
+  margin-top: 4px;
+  margin-right: 6px;
+}
+.dokan-quote-wrapper .help-block span.help-text a {
+  text-decoration: none;
+}
+.dokan-quote-wrapper .help-block span.dashicons {
+  font-size: 25px;
+}
+.dokan-quote-wrapper th.title {
+  width: 35%;
+}
+.dokan-quote-wrapper td.status span {
+  line-height: 2.5em;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+.dokan-quote-wrapper td.status .publish {
+  background: #c6e1c6;
+  color: #5b841b;
+}
+.dokan-quote-wrapper td.status .approved {
+  background: #c0e1f8;
+  color: #1b6384;
+}
+.dokan-quote-wrapper td.status .converted {
+  background: #46c994;
+  color: #ffffff;
+}
+.dokan-quote-wrapper td.status .pending {
+  background: #f8dda7;
+  color: #94660c;
+}
+.dokan-quote-wrapper td.status .trash {
+  background: #eba3a3;
+  color: #761919;
+}
+.dokan-quote-wrapper td.status .draft {
+  background: #e5e5e5;
+  color: #761919;
+}
+.dokan-quote-wrapper td.status .future {
+  background: #8080805c;
+  color: #000000e0;
+}
+.dokan-quote-wrapper .dokan-modal header.modal-header h1 {
+  width: 90%;
+}
+.dokan-quote-wrapper .announcement-modal-content {
+  height: 200px;
+}
+@media only screen and (max-width: 600px) {
+.dokan-quote-wrapper .help-block {
+    top: 45px !important;
+    left: 0 !important;
+}
+.dokan-quote-wrapper .subsubsub {
+    margin-top: 20px;
+}
+.dokan-quote-wrapper table td.title,
+  .dokan-quote-wrapper table td.content {
+    display: table-cell !important;
+}
+.dokan-quote-wrapper table th:not(.check-column):not(.title):not(.content):not(.send_to) {
+    display: none;
+}
+.dokan-quote-wrapper table td:not(.check-column):not(.title):not(.content):not(.send_to) {
+    display: none;
+}
+.dokan-quote-wrapper table th.column,
+  .dokan-quote-wrapper table td.column {
+    width: auto;
+}
+.dokan-quote-wrapper table td.manage-column.column-cb.check-column {
+    padding-right: 15px;
+}
+}
+.help-block-rtl {
+  left: 10px;
+}
+.help-block-ltr {
+  right: 10px;
+}
+
+.dokan-announcement-wrapper {
+  position: relative;
+}
+.dokan-announcement-wrapper .help-block {
+  position: absolute;
+  top: 10px;
+}
+.dokan-announcement-wrapper .help-block span.help-text {
+  display: inline-block;
+  margin-top: 4px;
+  margin-right: 6px;
+}
+.dokan-announcement-wrapper .help-block span.help-text a {
+  text-decoration: none;
+}
+.dokan-announcement-wrapper .help-block span.dashicons {
+  font-size: 25px;
+}
+.dokan-announcement-wrapper th.title {
+  width: 35%;
+}
+.dokan-announcement-wrapper td.status span {
+  line-height: 2.5em;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+.dokan-announcement-wrapper td.status .publish {
+  background: #c6e1c6;
+  color: #5b841b;
+}
+.dokan-announcement-wrapper td.status .pending {
+  background: #f8dda7;
+  color: #94660c;
+}
+.dokan-announcement-wrapper td.status .trash {
+  background: #eba3a3;
+  color: #761919;
+}
+.dokan-announcement-wrapper td.status .draft {
+  background: #e5e5e5;
+  color: #761919;
+}
+.dokan-announcement-wrapper td.status .future {
+  background: #8080805c;
+  color: #000000e0;
+}
+.dokan-announcement-wrapper .dokan-modal header.modal-header h1 {
+  width: 90%;
+}
+.dokan-announcement-wrapper .announcement-modal-content {
+  height: 200px;
+}
+@media only screen and (max-width: 600px) {
+.dokan-announcement-wrapper .help-block {
+    top: 45px !important;
+    left: 0 !important;
+}
+.dokan-announcement-wrapper .subsubsub {
+    margin-top: 20px;
+}
+.dokan-announcement-wrapper table td.title,
+  .dokan-announcement-wrapper table td.content {
+    display: table-cell !important;
+}
+.dokan-announcement-wrapper table th:not(.check-column):not(.title):not(.content):not(.send_to) {
+    display: none;
+}
+.dokan-announcement-wrapper table td:not(.check-column):not(.title):not(.content):not(.send_to) {
+    display: none;
+}
+.dokan-announcement-wrapper table th.column,
+  .dokan-announcement-wrapper table td.column {
+    width: auto;
+}
+.dokan-announcement-wrapper table td.manage-column.column-cb.check-column {
+    padding-right: 15px;
+}
+.dokan-announcement-wrapper table td.selected_user_role {
+    word-wrap: break-word;
+}
+}
+.dokan-settings-wrap .dashicons.dashicons-money-alt {
+  color: #ff0099;
+}
+.help-block-rtl {
+  left: 10px;
+}
+.help-block-ltr {
+  right: 10px;
+}
+
+.dokan-announcement-form-wrapper {
+  position: relative;
+}
+.dokan-announcement-form-wrapper .help-block {
+  position: absolute;
+  top: 10px;
+}
+.dokan-announcement-form-wrapper .help-block span.help-text {
+  display: inline-block;
+  margin-top: 4px;
+  margin-right: 6px;
+}
+.dokan-announcement-form-wrapper .help-block span.help-text a {
+  text-decoration: none;
+}
+.dokan-announcement-form-wrapper .help-block span.dashicons {
+  font-size: 25px;
+}
+.dokan-announcement-form-wrapper .error-message {
+  background-color: #f2dede;
+  color: #ff0000;
+  padding: 10px;
+}
+.dokan-announcement-form-wrapper .help-block-rtl {
+  left: 10px;
+}
+.dokan-announcement-form-wrapper .help-block-ltr {
+  right: 10px;
+}
+.dokan-announcement-form-wrapper #post-body .post-body-content {
+  position: relative;
+  width: 100%;
+  min-width: 463px;
+  float: left;
+  margin-bottom: 20px;
+}
+.dokan-announcement-form-wrapper #post-body .post-body-content #postdivrich {
+  margin-top: 20px;
+}
+.dokan-announcement-form-wrapper #post-body .announcement-actions {
+  background: #fafafa;
+}
+.dokan-announcement-form-wrapper #post-body .announcement-actions .action {
+  padding: 15px 0px;
+}
+.dokan-announcement-form-wrapper #post-body .announcement-actions .action .spinner {
+  visibility: visible;
+  float: none;
+}
+.dokan-announcement-form-wrapper #post-body .announcement-actions .action .draft-btn {
+  float: left;
+}
+.dokan-announcement-form-wrapper #post-body .announcement-actions .action .publish-btn {
+  float: right;
+}
+.dokan-announcement-form-wrapper #post-body .announcement-actions .sub-action #jj,
+.dokan-announcement-form-wrapper #post-body .announcement-actions .sub-action #aa,
+.dokan-announcement-form-wrapper #post-body .announcement-actions .sub-action #hh,
+.dokan-announcement-form-wrapper #post-body .announcement-actions .sub-action #mm {
+  padding: 1px;
+  font-size: 12px;
+}
+.dokan-announcement-form-wrapper #post-body .announcement-actions .sub-action #jj,
+.dokan-announcement-form-wrapper #post-body .announcement-actions .sub-action #hh,
+.dokan-announcement-form-wrapper #post-body .announcement-actions .sub-action #mm {
+  width: 2em;
+}
+.dokan-announcement-form-wrapper #post-body .announcement-actions .sub-action #timestamp .dashicons:before {
+  color: #82878c;
+  position: relative;
+  top: -1px;
+}
+.dokan-announcement-form-wrapper .multiselect input#ajax {
+  background: none !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  border: none !important;
+}
+.lang_rtl {
+  float: right !important;
+}
+
+.container {
+  width: 300px;
+  margin: 0 auto;
+}
+.categoryList .label-wrapper {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.categoryList .label-wrapper .has-children {
+  cursor: pointer;
+}
+
+.dokan-quote-form-wrapper {
+  position: relative;
+}
+.dokan-quote-form-wrapper .error-message {
+  background-color: #f2dede;
+  color: #ff0000;
+  padding: 10px;
+}
+.dokan-quote-form-wrapper .help-block {
+  position: absolute;
+  top: 10px;
+}
+.dokan-quote-form-wrapper .help-block span.help-text {
+  display: inline-block;
+  margin-top: 4px;
+  margin-right: 6px;
+}
+.dokan-quote-form-wrapper .help-block span.help-text a {
+  text-decoration: none;
+}
+.dokan-quote-form-wrapper .help-block span.dashicons {
+  font-size: 25px;
+}
+.dokan-quote-form-wrapper .help-block-rtl {
+  left: 10px;
+}
+.dokan-quote-form-wrapper .help-block-ltr {
+  right: 10px;
+}
+.dokan-quote-form-wrapper #post-body .post-body-content {
+  position: relative;
+  width: 100%;
+  min-width: 463px;
+  float: left;
+  margin-bottom: 20px;
+}
+.dokan-quote-form-wrapper #post-body .post-body-content #postdivrich {
+  margin-top: 20px;
+}
+.dokan-quote-form-wrapper #post-body .quote-actions {
+  background: #fafafa;
+}
+.dokan-quote-form-wrapper #post-body .quote-actions .action {
+  padding: 15px 0px;
+}
+.dokan-quote-form-wrapper #post-body .quote-actions .action .spinner {
+  visibility: visible;
+  float: none;
+}
+.dokan-quote-form-wrapper #post-body .quote-actions .action .draft-btn {
+  float: left;
+}
+.dokan-quote-form-wrapper #post-body .quote-actions .action .publish-btn {
+  float: right;
+}
+.dokan-quote-form-wrapper #post-body .quote-actions .sub-action #jj,
+.dokan-quote-form-wrapper #post-body .quote-actions .sub-action #aa,
+.dokan-quote-form-wrapper #post-body .quote-actions .sub-action #hh,
+.dokan-quote-form-wrapper #post-body .quote-actions .sub-action #mm {
+  padding: 1px;
+  font-size: 12px;
+}
+.dokan-quote-form-wrapper #post-body .quote-actions .sub-action #jj,
+.dokan-quote-form-wrapper #post-body .quote-actions .sub-action #hh,
+.dokan-quote-form-wrapper #post-body .quote-actions .sub-action #mm {
+  width: 2em;
+}
+.dokan-quote-form-wrapper #post-body .quote-actions .sub-action #timestamp .dashicons:before {
+  color: #82878c;
+  position: relative;
+  top: -1px;
+}
+.dokan-quote-form-wrapper .multiselect input#ajax {
+  background: none !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  border: none !important;
+}
+.dokan-quote-form-wrapper .subCategory {
+  cursor: pointer;
+}
+.dokan-quote-form-wrapper .all_cats {
+  width: 50%;
+  border: solid 1px #b6b1b1;
+  border-radius: 4px;
+  padding: 10px;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+.dokan-quote-form-wrapper .all_cats .all_sub_cats {
+  padding: 10px;
+}
+.dokan-quote-form-wrapper .per_cat {
+  width: auto;
+  padding: 5px;
+}
+.dokan-quote-form-wrapper .cat_text {
+  vertical-align: top;
+}
+.lang_rtl {
+  float: right !important;
+}
+input[type="checkbox"]:checked::before {
+  content: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2020%2020%27%3E%3Cpath%20d%3D%27M14.83%204.89l1.34.94-5.81%208.38H9.02L5.78%209.67l1.34-1.25%202.57%202.4z%27%20fill%3D%27%233582c4%27%2F%3E%3C%2Fsvg%3E") !important;
+}
+input[type=checkbox] {
+  margin-top: 0 !important;
+}
+

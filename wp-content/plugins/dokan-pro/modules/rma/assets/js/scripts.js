@@ -1,0 +1,270 @@
+(function($){
+
+    var Dokan_RMA = {
+        modal: null,
+        init: function() {
+            $( 'input#dokan_rma_product_override' ).on( 'change', this.toggleProductrmaOption );
+
+            $( 'select#dokan-warranty-type' ).on( 'change', this.toggleTypeContent );
+            $( 'select#dokan-warranty-length' ).on( 'change', this.toggleLenghtContent );
+
+            $( 'table.dokan-rma-addon-warranty-table').on( 'click', 'a.add-item', this.addRow );
+            $( 'table.dokan-rma-addon-warranty-table').on( 'click', 'a.remove-item', this.removeRow );
+
+            $( 'form#dokan-update-request-status' ).on( 'submit', this.changeRequestStatus );
+
+            $( 'a.dokan-send-refund-request' ).on( 'click', this.openRefundPopup );
+            $( 'a.dokan-send-coupon-request' ).on( 'click', this.openCouponPopup );
+
+            $( 'body' ).on( 'submit', 'form#dokan-send-refund-popup-form', this.submitRefundRequest );
+            $( 'body' ).on( 'submit', 'form#dokan-send-coupon-popup-form', this.sendCouponRequest );
+
+            this.initialize();
+        },
+
+        initialize: function() {
+            $( 'select#dokan-warranty-type' ).trigger( 'change' );
+            $( 'input#dokan_rma_product_override' ).trigger( 'change' );
+        },
+
+        addRow: function(e){
+            e.preventDefault();
+            var row = $(this).closest('tr').first().clone().appendTo($(this).closest('tbody'));
+            row.find('input').val('');
+            row.find('select').val('days');
+        },
+
+        removeRow: function(e) {
+            e.preventDefault();
+
+            if( $(this).closest('tbody').find( 'tr' ).length == 1 ){
+                return;
+            }
+
+            $(this).closest('tr').remove();
+        },
+
+        toggleProductrmaOption: function(e) {
+            e.preventDefault();
+            var self = $(this);
+
+            if ( self.is( ':checked' ) ) {
+                $('.dokan-product-rma-option-wrapper').slideDown();
+            } else {
+                $('.dokan-product-rma-option-wrapper').slideUp( 300, function() {
+                    $(this).hide();
+                });
+            }
+
+        },
+
+        toggleTypeContent: function(e) {
+            e.preventDefault();
+
+            var self = $(this),
+                hide_classes = '.hide_if_no_warranty',
+                show_classes = '.show_if_no_warranty',
+                val  = self.val();
+
+            $.each( [ 'included_warranty', 'addon_warranty' ], function( index, value ) {
+                hide_classes = hide_classes + ', .hide_if_' + value;
+                show_classes = show_classes + ', .show_if_' + value;
+            });
+
+            $(hide_classes).show();
+            $(show_classes).hide();
+
+            $('.show_if_' + val ).show();
+            $('.hide_if_' + val ).hide();
+
+            if ( val === 'included_warranty' ) {
+                $( 'select#dokan-warranty-length' ).trigger( 'change' );
+            }
+        },
+
+        toggleLenghtContent: function(e) {
+            e.preventDefault();
+
+            var self = $(this),
+                hide_classes = '.hide_if_lifetime, .hide_if_limited',
+                show_classes = '.show_if_lifetime, .show_if_limited',
+                val = self.val();
+
+            $(hide_classes).show();
+            $(show_classes).hide();
+
+            $('.show_if_' + val ).show();
+            $('.hide_if_' + val ).hide();
+        },
+
+        changeRequestStatus: function(e) {
+            e.preventDefault();
+
+            var self = $(this),
+                data = {
+                    action: 'dokan-update-return-request',
+                    nonce: DokanRMA.nonce,
+                    formData: self.serialize()
+                }
+
+            jQuery( '.dokan-status-update-panel' ).block({ message: null, overlayCSS: { background: '#fff url(' + dokan.ajax_loader + ') no-repeat center', opacity: 0.6 } });
+
+            $.post( DokanRMA.ajaxurl, data, function(resp){
+                if ( resp.success ) {
+                    jQuery( '.dokan-status-update-panel' ).unblock();
+                    alert( resp.data.message )
+                    window.location.reload();
+                } else {
+                    jQuery( '.dokan-status-update-panel' ).unblock();
+                    dokan_sweetalert( resp.data, {
+                        icon: 'warning',
+                    } );
+                }
+            });
+        },
+
+        openRefundPopup: function(e) {
+            e.preventDefault();
+            var self = $(this),
+                refundTemplate = wp.template( 'dokan-send-refund' );
+
+            modal = $( '.dokan-rma-modals' ).iziModal( {
+                closeButton: true,
+                appendTo: 'body',
+                title: '',
+                headerColor: dokan.modal_header_color,
+                onOpening: function(modal){
+                    modal.startLoading();
+
+                    var data = {
+                        action: 'dokan-get-refund-order-data',
+                        nonce: DokanRMA.nonce,
+                        request_id: self.data( 'request_id' )
+                    };
+
+                    $.post( DokanRMA.ajaxurl, data, function(resp) {
+                        $( '#dokan-send-refund-popup' ).find( '.refund-content' ).html( resp.data );
+                        let html = $( '#dokan-send-refund-popup' ).html();
+                        $(".dokan-rma-modals .iziModal-content").html(html);
+
+                        $('table.dokan-refund-item-list-table').find( 'input.refund_item_amount' ).on( 'keyup', function(){
+                            total = 0.0;
+                            $('table.dokan-refund-item-list-table').find( 'input.refund_item_amount' ).each( function( item, key ) {
+                                total += parseFloat( accounting.unformat( $(key).val(), dokan_refund.mon_decimal_point ) );
+                            });
+
+                            $('.dokan-popup-total-refund-amount').find('span.amount').text( accounting.formatNumber( total, dokan_refund.currency_format_num_decimals, '', dokan_refund.mon_decimal_point ) );
+                            $('input[name="refund_total_amount"]').val(accounting.formatNumber( total, dokan_refund.currency_format_num_decimals, '', dokan_refund.mon_decimal_point ));
+                        });
+
+                        modal.stopLoading();
+                    } );
+                }
+            } )
+
+            modal.iziModal( 'open' );
+        },
+
+        openCouponPopup: function(e) {
+            e.preventDefault();
+            var self = $(this),
+                couponTemplate = wp.template( 'dokan-send-coupon' );
+
+            modal = $( '.dokan-rma-coupon-modals' ).iziModal( {
+                closeButton: true,
+                appendTo: 'body',
+                title: '',
+                headerColor: dokan.modal_header_color,
+                onOpening: function(modal){
+
+                    modal.startLoading();
+
+                    var data = {
+                        action: 'dokan-get-coupon-order-data',
+                        nonce: DokanRMA.nonce,
+                        request_id: self.data('request_id')
+                    };
+
+                    $.post(DokanRMA.ajaxurl, data, function (resp) {
+                        $('#dokan-send-coupon-popup').find('.coupon-content').html(resp.data);
+                        let html = $( '#dokan-send-coupon-popup' ).html();
+                        $(".dokan-rma-coupon-modals .iziModal-content").html(html);
+                        modal.stopLoading();
+
+                        $('table.dokan-refund-item-list-table').find('input.refund_item_amount').on('keyup', function () {
+                            total = 0.0;
+                            $('table.dokan-refund-item-list-table').find('input.refund_item_amount').each(function (item, key) {
+                                total += parseFloat(accounting.unformat($(key).val(), dokan_refund.mon_decimal_point));
+                            });
+
+                            $('.dokan-popup-total-refund-amount').find('span.amount').text(accounting.formatNumber(total, dokan_refund.currency_format_num_decimals, '', dokan_refund.mon_decimal_point));
+                            $('input[name="refund_total_amount"]').val(accounting.formatNumber(total, dokan_refund.currency_format_num_decimals, '', dokan_refund.mon_decimal_point));
+                        });
+                    });
+                }
+            } )
+
+            modal.iziModal( 'open' );
+        },
+
+        submitRefundRequest: function(e) {
+            e.preventDefault();
+
+            var self = $(this),
+                data = {
+                    action: 'dokan-send-refund-request',
+                    nonce: DokanRMA.nonce,
+                    formData: self.serialize()
+                };
+            modal.iziModal('startLoading');
+
+            $.post( DokanRMA.ajaxurl, data, function(resp) {
+                if ( resp.success ) {
+                    modal.iziModal('stopLoading');
+                    window.location.reload();
+                } else {
+                    modal.iziModal('stopLoading');
+                    if ( resp.data.error ) {
+                        dokan_sweetalert( resp.data.error, {
+                            icon: 'warning',
+                        } );
+                    } else {
+                        dokan_sweetalert( resp.data, {
+                            icon: 'warning',
+                        } );
+                    }
+                }
+            } )
+        },
+
+        sendCouponRequest: function(e) {
+            e.preventDefault();
+            var self = $(this),
+                data = {
+                    action: 'dokan-send-coupon-request',
+                    nonce: DokanRMA.nonce,
+                    formData: self.serialize()
+                };
+
+            $( '#dokan-send-coupon-popup' ).block({ message: null, overlayCSS: { background: '#fff url(' + dokan.ajax_loader + ') no-repeat center', opacity: 0.6 } });
+
+            $.post( DokanRMA.ajaxurl, data, function(resp) {
+                if ( resp.success ) {
+                    alert( resp.data );
+                    $( '#dokan-send-coupon-popup' ).unblock()
+                    window.location.reload();
+                } else {
+                    $( '#dokan-send-coupon-popup' ).unblock()
+                    dokan_sweetalert( resp.data, {
+                        icon: 'warning',
+                    } );
+                }
+            } )
+        }
+    }
+
+    $(document).ready(function(){
+        Dokan_RMA.init();
+    });
+
+})(jQuery);
